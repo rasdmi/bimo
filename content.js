@@ -1,32 +1,32 @@
-// Контент для 4 плиток. Поменяй href на реальные ссылки разделов.
-// Картинки положи в /assets с указанными именами.
+// Картинки лежат в /assets как на скетче: 1.png, 2.png, 3.png, 4.png, di.png
+// Поставь реальные ссылки на страницы вместо #.
 window.TILES = [
   {
     title: "Медиации",
-    desc: "Наводим мосты, договариваемся красиво.",
-    href: "sections/mediation.html",
-    image: "assets/mediation.jpg",
+    desc: "Помогу вам договориться",
+    href: "#mediation",
+    image: "assets/1.png",
     accent: "#6C8CFF"
   },
   {
     title: "Горизонтальные сообщества",
-    desc: "Делаем среды, где каждый — соавтор.",
-    href: "sections/communities.html",
-    image: "assets/communities.jpg",
+    desc: "Консультирую и участвую",
+    href: "#communities",
+    image: "assets/2.png",
     accent: "#9A6CFF"
   },
   {
     title: "Детские мастерские",
-    desc: "Тёплые пространства для исследований и игры.",
-    href: "sections/kids-workshops.html",
-    image: "assets/kids.jpg",
+    desc: "Творю и помогаю",
+    href: "#kids",
+    image: "assets/3.png",
     accent: "#FF7A6C"
   },
   {
     title: "ИИ-контент",
-    desc: "От идеи до визуала — быстро и смело.",
-    href: "sections/ai-content.html",
-    image: "assets/ai.jpg",
+    desc: "Создаю всё красиво",
+    href: "#ai",
+    image: "assets/4.png",
     accent: "#00BFA6"
   }
 ];

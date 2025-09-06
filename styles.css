@@ -1,197 +1,140 @@
 :root{
-  /* Цвета и базовые токены */
-  --bg: #ffffff;
+  --bg: #fff;
   --text: #0f1222;
   --muted: #5f6675;
-  --ring: rgba(67, 115, 255, .28);
 
   --tile-radius: 22px;
   --tile-dim: clamp(240px, 30vw, 360px);
   --tile-gap: clamp(16px, 3vw, 28px);
 
-  --overlay-darkness: 0.62;  /* базовая затемнённость */
-  --hover-darkness: 0.16;    /* при ховере */
+  --overlay-darkness: 0.60;  /* базовая затемнённость плиток */
+  --hover-darkness: 0.16;    /* при ховере/фокусе */
+  --tap-delay: 950;          /* мс — для мобильной задержки */
   --blur: 10px;
-  --tap-delay: 950;          /* совпадает со script.js */
-  --shadow: 0 14px 48px rgba(10, 14, 29, .16);
+  --shadow: 0 14px 48px rgba(10,14,29,.16);
 
-  /* Микро-motion */
   --ease-out: cubic-bezier(.22,.9,.24,1);
-  --ease-in: cubic-bezier(.32,0,.67,0);
 }
 
-* { box-sizing: border-box; }
-html, body { height: 100%; }
-html { scroll-behavior: smooth; }
+*{ box-sizing: border-box; }
+html,body{ height: 100%; }
+html{ scroll-behavior: smooth; }
 body{
-  margin: 0;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  color: var(--text);
-  background: var(--bg);
-  line-height: 1.5;
+  margin:0;
+  color:var(--text);
+  background:var(--bg);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-.container{ width: min(1100px, 92vw); margin: 0 auto; }
+.container{ width:min(1100px,92vw); margin:0 auto; }
 
-.site-header{ padding: 28px 0 18px; }
+/* --- Hero (заголовок слева, аватар справа) --- */
+.site-header{ padding: 24px 0 12px; }
 .site-header__inner{
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: center;
-  gap: 18px 22px;
-}
-.avatar{
-  width: 88px; height: 88px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 6px 20px rgba(0,0,0,.12);
+  display:grid;
+  grid-template-columns: 1fr auto;
+  align-items:end;
+  gap: 16px 24px;
 }
 .headline{
-  margin: 0;
-  font-family: Manrope, Inter, system-ui, sans-serif;
-  font-weight: 800;
-  letter-spacing: -0.015em;
-  font-size: clamp(28px, 4.6vw, 48px);
+  margin:0;
+  font: 800 clamp(28px, 4.6vw, 48px)/1.1 Manrope, Inter, system-ui, sans-serif;
+  letter-spacing:-0.015em;
+}
+.hero-avatar{ display:flex; align-items:flex-end; }
+.avatar{
+  width:140px; height:140px; object-fit:cover; border-radius:18px;
+  box-shadow: 0 10px 34px rgba(0,0,0,.12);
 }
 
-.portal { padding: 18px 0 34px; }
+.portal{ padding: 16px 0 38px; }
 .nojs{
-  display: inline-block;
-  padding: 8px 12px;
-  border-radius: 10px;
-  background: #f0f3f7;
-  color: #334;
-  font-weight: 600;
+  display:inline-block; padding:8px 12px; border-radius:10px;
+  background:#f0f3f7; color:#334; font-weight:600;
 }
 
+/* --- Tiles --- */
 .tiles{
-  margin: 24px auto 10px;
+  margin: 18px auto 10px;
   width: fit-content;
-  display: grid;
+  display:grid;
   grid-template-columns: repeat(2, var(--tile-dim));
   grid-auto-rows: var(--tile-dim);
   gap: var(--tile-gap);
-  place-items: center;
 }
 
 .tile{
-  position: relative;
-  display: block;
-  width: var(--tile-dim);
-  height: var(--tile-dim);
-  border-radius: var(--tile-radius);
-  overflow: hidden;
-  text-decoration: none;
-  color: #fff;
-  isolation: isolate;
+  position:relative; display:block;
+  width:var(--tile-dim); height:var(--tile-dim);
+  border-radius:var(--tile-radius); overflow:hidden;
+  text-decoration:none; color:#fff; isolation:isolate;
   box-shadow: var(--shadow);
   transform: translateZ(0);
-  will-change: transform;
   transition: transform .6s var(--ease-out);
 }
 
 .tile__bg{
-  position: absolute; inset: 0;
+  position:absolute; inset:0;
   background: center/cover no-repeat var(--img);
   filter: brightness(1) saturate(1.06);
   transition: transform .7s var(--ease-out), filter .7s var(--ease-out);
-  z-index: 0;
+  z-index:0;
 }
-
-/* тёмная вуаль */
 .tile__fog{
-  position: absolute; inset: 0;
+  position:absolute; inset:0;
   background: radial-gradient(120% 120% at 50% 65%, rgba(0,0,0,0) 0%, rgba(0,0,0,var(--overlay-darkness)) 66%);
-  transition: opacity .45s ease;
-  opacity: 1;
-  z-index: 1;
+  transition: opacity .45s ease; opacity:1; z-index:1;
 }
-
-/* мягкое свечение */
 .tile__glow{
-  position: absolute; inset: -2px;
-  border-radius: inherit;
-  pointer-events: none;
-  background:
-    radial-gradient(60% 60% at 50% 50%, color-mix(in oklab, var(--accent, #87f) 70%, white) 0%, transparent 60%);
-  opacity: 0;
+  position:absolute; inset:-2px; border-radius:inherit;
+  pointer-events:none; z-index:2; opacity:0;
+  background: radial-gradient(60% 60% at 50% 50%, color-mix(in oklab, var(--accent,#87f) 70%, white) 0%, transparent 60%);
   filter: blur(var(--blur));
-  transition: opacity .45s ease, filter .45s ease;
-  z-index: 2;
+  transition: opacity .45s ease;
 }
-
-/* слой для частиц */
-.tile__fx{
-  position: absolute; inset: 0;
-  pointer-events: none;
-  z-index: 3;
-}
-
-/* текстовый блок */
 .tile__meta{
-  position: absolute; inset: 0;
-  display: grid;
-  align-content: end;
-  padding: 18px 18px 16px;
-  z-index: 4;
+  position:absolute; inset:0; display:grid; align-content:end;
+  padding:18px 18px 16px; z-index:3;
 }
 .tile__title{
-  margin: 0 0 6px 0;
-  font-family: Manrope, Inter, system-ui, sans-serif;
-  font-weight: 800;
-  font-size: clamp(18px, 2.2vw, 26px);
-  letter-spacing: -0.01em;
-  text-shadow: 0 2px 16px rgba(0,0,0,.45);
+  margin:0 0 6px; font: 800 clamp(18px,2.2vw,26px)/1.1 Manrope, Inter, system-ui, sans-serif;
+  letter-spacing:-0.01em; text-shadow: 0 2px 16px rgba(0,0,0,.45);
 }
 .tile__desc{
-  margin: 0;
-  font-size: 14px;
-  font-weight: 500;
-  color: rgba(255,255,255,.92);
-  text-shadow: 0 2px 12px rgba(0,0,0,.42);
-  max-width: 92%;
+  margin:0; font-size:14px; font-weight:500; max-width:92%;
+  color: rgba(255,255,255,.92); text-shadow: 0 2px 12px rgba(0,0,0,.42);
 }
 
 /* акцент для свечения */
 .tile{ --accent: attr(data-accent color, #87f); }
 
-/* Hover / Focus */
-.tile:where(:hover, :focus-visible){ outline: none; }
-.tile:where(:hover, :focus-visible){
-  transform: translateY(-2px);
-}
-.tile:where(:hover, :focus-visible) .tile__bg{
-  transform: scale(1.045);
-  filter: brightness(1.09) saturate(1.14) contrast(1.02);
-}
-.tile:where(:hover, :focus-visible) .tile__fog{ opacity: var(--hover-darkness); }
-.tile:where(:hover, :focus-visible) .tile__glow{ opacity: 1; }
+/* Hover / focus (десктоп) */
+.tile:where(:hover,:focus-visible){ outline:none; transform: translateY(-2px); }
+.tile:where(:hover,:focus-visible) .tile__bg{ transform: scale(1.045); filter: brightness(1.09) saturate(1.14) contrast(1.02); }
+.tile:where(:hover,:focus-visible) .tile__fog{ opacity: var(--hover-darkness); }
+.tile:where(:hover,:focus-visible) .tile__glow{ opacity: 1; }
 
-/* Активная моб. подсветка */
+/* Активное состояние при моб. тапе */
 .tile--active{ transform: translateY(-1px); }
-.tile--active .tile__bg{
-  transform: scale(1.06);
-  filter: brightness(1.16) saturate(1.2);
-}
-.tile--active .tile__fog{ opacity: .12; }
-.tile--active .tile__glow{
-  opacity: 1;
-  animation: pulse var(--tap-delay)ms ease-in-out 1;
-}
+.tile--active .tile__bg{ transform: scale(1.06); filter: brightness(1.16) saturate(1.2); }
+.tile--active .tile__fog{ opacity:.12; }
+.tile--active .tile__glow{ opacity:1; animation: pulse var(--tap-delay)ms ease-in-out 1; }
 @keyframes pulse{
-  0%{ opacity:.9; filter:blur(calc(var(--blur) * .75)); }
-  50%{ opacity:1;  filter:blur(calc(var(--blur) * .55)); }
-  100%{ opacity:.6; filter:blur(var(--blur)); }
+  0%{ opacity:.85; } 50%{ opacity:1; } 100%{ opacity:.6; }
 }
 
-/* Футер */
-.site-footer{ padding: 28px 0 46px; color: var(--muted); }
+/* Доступность */
+.visually-hidden{
+  position:absolute!important; width:1px;height:1px;margin:-1px;border:0;padding:0;
+  white-space:nowrap; clip-path: inset(50%); clip: rect(0 0 0 0); overflow:hidden;
+}
 
-/* Respect reduced motion */
+.site-footer{ padding: 26px 0 40px; color: var(--muted); }
+
 @media (prefers-reduced-motion: reduce){
-  .tile, .tile__bg, .tile__fog, .tile__glow { transition: none !important; }
-  .tile__glow{ animation: none !important; }
+  .tile, .tile__bg, .tile__fog, .tile__glow{ transition:none !important; }
+  .tile__glow{ animation:none !important; }
 }
