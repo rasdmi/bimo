@@ -1,0 +1,163 @@
+/* ----------
+  DIMA BIMA — styles.css
+  Palette: earth tones, warm neutrals
+---------- */
+:root{
+  --bg:#F6F3EC;
+  --paper:#E9E3D6;
+  --ink:#2E2A27;
+  --ink-soft:#4C453F;
+  --accent:#C56E33; /* terracotta */
+  --accent-2:#6F8B74; /* moss */
+  --line:#D8D2C6;
+  --ok:#2F855A;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, "Inter", "Manrope", "Segoe UI", Roboto, Arial, sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.6;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+}
+
+.container{
+  width:min(1100px, 92%);
+  margin-inline:auto;
+}
+
+.skip-link{
+  position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;
+}
+.skip-link:focus{left:1rem;top:1rem;width:auto;height:auto;background:var(--paper);padding:.5rem .75rem;border-radius:.5rem;box-shadow:0 2px 6px rgba(0,0,0,.1)}
+
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:linear-gradient(180deg,var(--paper),rgba(233,227,214,.8) 60%, rgba(233,227,214,0));
+  backdrop-filter:saturate(140%) blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.site-header .container{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:.6rem 0;
+}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:inherit}
+.logo{width:38px;height:38px;display:block}
+.logo-bg{fill:var(--paper)}
+.logo-stroke{fill:none;stroke:#6B4F3B;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+.brand-text{font-weight:700;letter-spacing:.3px}
+
+.nav{display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--ink-soft);text-decoration:none;padding:.4rem .6rem;border-radius:.6rem}
+.nav a:hover{background:var(--paper);color:var(--ink)}
+
+.nav .cta{background:var(--ink);color:var(--paper)}
+.nav .cta:hover{background:var(--accent)}
+
+.nav-toggle{display:none;background:none;border:0;gap:4px;flex-direction:column}
+.nav-toggle span{display:block;width:24px;height:2px;background:var(--ink);border-radius:2px}
+
+.section{padding:80px 0;border-top:1px solid var(--line)}
+.section:first-of-type{border-top:0}
+.section h2{font-size: clamp(1.4rem, 1.2rem + 1.5vw, 2.2rem); margin:0 0 .4rem}
+.section .section-intro{color:var(--ink-soft);margin:.25rem 0 1.25rem}
+
+.hero{padding:90px 0 70px}
+.hero .container{display:grid;grid-template-columns: 1.1fr .9fr;gap:40px;align-items:center}
+.hero .pill{display:inline-block;background:var(--paper);padding:.25rem .6rem;border-radius:999px;border:1px solid var(--line);font-size:.9rem;color:var(--ink-soft)}
+.hero h1{font-size:clamp(2rem,1.4rem + 3vw,3.4rem);line-height:1.2;margin:.6rem 0}
+.lead{font-size:1.1rem;color:var(--ink-soft);max-width:54ch}
+.hero-actions{display:flex;gap:.8rem;margin-top:1rem;flex-wrap:wrap}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;
+  border:1px solid var(--ink);color:var(--ink);background:transparent;border-radius:.8rem;
+  padding:.6rem 1rem;text-decoration:none;cursor:pointer;font-weight:600}
+.btn.primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn.primary:hover{background:var(--accent);border-color:var(--accent)}
+.btn.ghost:hover{background:var(--paper)}
+
+.hero-art{position:relative;min-height:300px}
+.blob{position:absolute;filter:blur(6px);opacity:.9;border-radius:50%;mix-blend-mode:multiply;animation:float 8s ease-in-out infinite}
+.blob-a{width:180px;height:180px;left:8%;top:14%;background:#f2d6bf}
+.blob-b{width:240px;height:240px;right:10%;top:0;background:#cde0d2;animation-duration:10s}
+.blob-c{width:160px;height:160px;right:20%;bottom:6%;background:#f0e8d9;animation-duration:12s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+.handdrawn.d-anim{
+  position:absolute;inset:auto 0 0 auto;right:12%;bottom:10%;
+  width:140px;height:140px;border-radius:50%;
+  background: radial-gradient(80px 80px at 50% 50%, var(--paper) 0 60%, rgba(255,255,255,0) 61%);
+}
+.handdrawn.d-anim::after{
+  content:"";position:absolute;inset:20% 20%;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 40% 30%, transparent 60%, transparent 61%) ,
+    conic-gradient(from 220deg at 50% 50%, transparent 0 35deg, #6B4F3B 36deg 38deg, transparent 39deg 360deg);
+  mask:
+    radial-gradient(circle at 50% 50%, black 60%, transparent 60%);
+  /* animated stroke */
+  animation: draw 4s ease-in-out infinite;
+}
+@keyframes draw{
+  0% { filter: drop-shadow(0 0 0 rgba(107,79,59,0)); transform: rotate(0deg) scale(1); }
+  50%{ filter: drop-shadow(0 2px 8px rgba(107,79,59,.25)); transform: rotate(3deg) scale(1.03); }
+  100%{ filter: drop-shadow(0 0 0 rgba(107,79,59,0)); transform: rotate(0deg) scale(1); }
+}
+
+.areas .grid{
+  display:grid;grid-template-columns: repeat(4,1fr);gap:16px;
+}
+.card{
+  background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px;
+  display:flex;flex-direction:column;gap:.5rem;transition:transform .2s ease, box-shadow .2s ease;
+}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.card .more{margin-top:auto;align-self:flex-start;text-decoration:none;border-bottom:1px solid currentColor;color:var(--ink)}
+
+.detail .container.narrow{width:min(820px,92%)}
+.detail.alt{background:#F2EEE6}
+
+.list{margin:12px 0;padding-left:18px}
+.list li{margin:6px 0}
+
+.tarot .tarot-card{
+  display:grid;place-items:center;
+  width:220px;height:320px;margin:10px auto;
+  border-radius:16px;border:1px solid var(--line);
+  background:linear-gradient(180deg,#fff, var(--paper));
+  box-shadow:0 8px 24px rgba(0,0,0,.08);
+  font-weight:700;font-size:1.2rem;letter-spacing:.5px;
+  position:relative;perspective:800px;transform-style:preserve-3d;
+  transition:transform .2s ease;
+}
+.tarot .tarot-card:active{transform:scale(.98)}
+.tarot-back, .tarot-front{
+  position:absolute;inset:0;border-radius:16px;display:grid;place-items:center;
+  backface-visibility:hidden;
+}
+.tarot-back{font-size:2rem;opacity:.6}
+.tarot-front{transform:rotateY(180deg);padding:16px;text-align:center}
+.tarot .flipped .tarot-back{transform:rotateY(180deg)}
+.tarot .flipped .tarot-front{transform:rotateY(0)}
+
+.tarot-actions{display:flex;justify-content:center;margin-top:10px}
+
+.contact form{display:grid;grid-template-columns: 1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field input,.field textarea{
+  padding:.75rem .9rem;border-radius:.8rem;border:1px solid var(--line);background:#fff;
+  font:inherit;color:inherit;
+}
+.field textarea{grid-column:1/-1;resize:vertical}
+.actions{display:flex;align-items:center;gap:12px}
+.form-note{margin:0;color:var(--ink-soft);font-size:.9rem}
+
+.site-footer{padding:40px 0;border-top:1px solid var(--line);background:var(--paper)}
+.site-footer .container{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.site-footer a{text-decoration:none;color:var(--ink-soft)}

@@ -3,37 +3,209 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Дима — Портал</title>
-
-  <!-- Шрифты -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Manrope:wght@600;800&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="mobile.css" media="(max-width: 720px)" />
-  <meta name="theme-color" content="#ffffff" />
+  <title>Дима Бима — фасилитатор будущего</title>
+  <meta name="description" content="Я Дима. Помогаю людям слышать друг друга, создаю бережные сообщества, провожу медиации, творю с детьми и с ИИ." />
+  <meta name="theme-color" content="#E9E3D6" />
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="mobile.css" media="(max-width: 860px)" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23E9E3D6'/%3E%3Cpath d='M22 18c6-6 20-3 20 10s-14 16-20 10' stroke='%236B4F3B' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+  <meta property="og:title" content="Дима Бима — фасилитатор будущего">
+  <meta property="og:description" content="Горизонтальные сообщества, медиация, детские мастерские, нейроконтент с ИИ.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://dummyimage.com/1200x630/e9e3d6/6b4f3b.png&text=Dima+Bima">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Дима Кузнецов",
+    "alternateName": "Dima Bima",
+    "url": "https://dima-bima.ru",
+    "jobTitle": "Фасилитатор будущего",
+    "sameAs": [],
+    "knowsAbout": ["Медиация", "Горизонтальные организации", "Детские мастерские", "ИИ-контент"]
+  }
+  </script>
 </head>
 <body>
-  <header class="site-header">
-    <div class="site-header__inner container">
-      <div class="hero-copy">
-        <h1 class="headline">Привет, я Дима,<br> выбирай, чего сегодня будем творить</h1>
-      </div>
-      <div class="hero-avatar">
-        <img class="avatar" src="media/di.png" alt="Дима" width="140" height="140">
-      </div>
+  <a class="skip-link" href="#main">Пропустить к содержанию</a>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="#top" class="brand" aria-label="На главную">
+        <svg class="logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+          <circle cx="32" cy="32" r="30" class="logo-bg"></circle>
+          <path d="M22 18c6-6 20-3 20 10s-14 16-20 10" class="logo-stroke"></path>
+        </svg>
+        <span class="brand-text">dima bima</span>
+      </a>
+      <nav aria-label="Главная навигация" class="nav">
+        <a href="#areas">Направления</a>
+        <a href="#about">Обо мне</a>
+        <a href="#tarot">Карта будущего</a>
+        <a href="#contact" class="cta">Написать</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Открыть меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
-  <main class="container">
-    <section class="portal" aria-labelledby="portal-title">
-      <h2 id="portal-title" class="visually-hidden">Выбор раздела</h2>
-      <div id="tiles" class="tiles"></div>
-      <noscript class="nojs">Для интерактивности нужен JavaScript.</noscript>
+  <main id="main">
+    <!-- HERO -->
+    <section id="top" class="section hero" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero-content">
+          <h1 id="hero-title"><span class="pill">я — дима</span><br/>фасилитатор будущего</h1>
+          <p class="lead" data-i18n="hero_subtitle">
+            Помогаю людям услышать друг друга, создаю бережные сообщества, провожу медиации,
+            творю с детьми и с искусственным интеллектом.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#areas">Мои направления</a>
+            <a class="btn ghost" href="#contact">Написать мне</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <!-- hybrid portrait: photo slot + AI blossom -->
+          <div class="blob blob-a"></div>
+          <div class="blob blob-b"></div>
+          <div class="blob blob-c"></div>
+          <div class="handdrawn d-anim" title="живая буква d"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AREAS -->
+    <section id="areas" class="section areas" aria-labelledby="areas-title">
+      <div class="container">
+        <h2 id="areas-title">Направления</h2>
+        <p class="section-intro">Четыре поля, в которых я работаю. Все равные — выбирай, что ближе.</p>
+        <div class="grid">
+          <article class="card" data-area="communities">
+            <h3>🌾 Горизонтальные сообщества</h3>
+            <p>Консультирую по созданию бережных равных пространств и фестивалей. Помогаю строить структуры, где каждый важен.</p>
+            <a href="#communities" class="more" aria-label="Подробнее о горизонтальных сообществах">Подробнее</a>
+          </article>
+          <article class="card" data-area="mediation">
+            <h3>🤝 Медиация</h3>
+            <p>Провожу встречи, где люди снова начинают слышать друг друга. 40+ медиаций в семьях, школах и командах.</p>
+            <a href="#mediation" class="more" aria-label="Подробнее о медиации">Подробнее</a>
+          </article>
+          <article class="card" data-area="kids">
+            <h3>🎨 Детские мастерские</h3>
+            <p>Свободные занятия, где дети исследуют, творят, кодят, придумывают свои миры. Сады, школы, фестивали.</p>
+            <a href="#kids" class="more" aria-label="Подробнее о детских мастерских">Подробнее</a>
+          </article>
+          <article class="card" data-area="ai">
+            <h3>🤖 Нейроконтент</h3>
+            <p>Творю вместе с ИИ — создаю сайты, игры, видео и образы. Цифровое искусство как поле совместного воображения.</p>
+            <a href="#ai" class="more" aria-label="Подробнее о нейроконтенте">Подробнее</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- DETAIL SECTIONS -->
+    <section id="communities" class="section detail">
+      <div class="container narrow">
+        <h2>Горизонтальные сообщества</h2>
+        <p>Консультации по запуску и развитию: школы, дома культуры, сообщества практиков, фестивали. Сфокусирован на безопасности, прозрачности и распределённых ролях.</p>
+        <ul class="list">
+          <li>Диагностика и настройка процессов</li>
+          <li>Кодекс взаимодействия и ритуалы</li>
+          <li>Фасилитация встреч и стратегических сессий</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="mediation" class="section detail alt">
+      <div class="container narrow">
+        <h2>Медиация</h2>
+        <p>Личные и групповые конфликты — помогаю вернуться к слышимости и уважению. За 5 лет провёл 40+ медиаций.</p>
+        <ul class="list">
+          <li>Семья, школа, команды, проекты</li>
+          <li>Договорённости и последующие шаги</li>
+          <li>Конфиденциальность и бережность</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="kids" class="section detail">
+      <div class="container narrow">
+        <h2>Детские мастерские</h2>
+        <p>Свободные мастерские, где ребёнок — автор. Тепло, безопасность и игра как метод познания. Кодим, рисуем, снимаем, придумываем.</p>
+        <ul class="list">
+          <li>Проектные фестивали и воркшопы</li>
+          <li>Медиа- и техно-творчество</li>
+          <li>Партнёрство с садами и школами</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="ai" class="section detail alt">
+      <div class="container narrow">
+        <h2>Нейроконтент</h2>
+        <p>Сайты, игры, видео, изображения. Творю в паре с ИИ — от идеи до публикации. Делаю процесс видимым и обучающим.</p>
+        <ul class="list">
+          <li>Идея → прототип → релиз</li>
+          <li>Midjourney, видео- и код-генерация</li>
+          <li>Обучающие сессии и сопровождение</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TAROT / FUTURE CARD -->
+    <section id="tarot" class="section tarot">
+      <div class="container">
+        <h2>Карта будущего</h2>
+        <p class="section-intro">Нажми на карту — получи маленькое послание о нашем сотрудничестве.</p>
+        <button class="tarot-card" aria-live="polite" aria-atomic="true">
+          <span class="tarot-back">✨</span>
+          <span class="tarot-front" id="tarot-text">нажми</span>
+        </button>
+        <div class="tarot-actions">
+          <button class="btn ghost" id="share-btn">Поделиться страницей</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section contact">
+      <div class="container">
+        <h2>Связаться</h2>
+        <p class="section-intro">Хочешь поговорить, поработать, посотрудничать — напиши мне.</p>
+        <form id="contact-form">
+          <div class="field">
+            <label for="name">Имя</label>
+            <input id="name" name="name" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="email">Email или Telegram</label>
+            <input id="email" name="email" autocomplete="email" required />
+          </div>
+          <div class="field">
+            <label for="message">Сообщение</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <div class="actions">
+            <button class="btn primary" type="submit">Отправить</button>
+            <p class="form-note">Отправка откроет почтовый клиент с черновиком письма.</p>
+          </div>
+        </form>
+      </div>
     </section>
   </main>
 
-  <script src="content.js" defer></script>
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> dima bima — с теплом, вниманием и будущим</p>
+      <nav aria-label="Ссылки футера">
+        <a href="#top">Наверх ↑</a>
+      </nav>
+    </div>
+  </footer>
+
   <script src="script.js" defer></script>
 </body>
 </html>
